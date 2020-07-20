@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+      const computerPlay = function() {
+        let number = Math.floor(Math.random() * 3) + 1;
+
+        if (number == 1) {
+          return 'Rock';
+        } else if (number == 2) {
+          return 'Scissors';
+        } else {
+          return 'Paper';
+        }
+      }
+
+      const playRound = function(playerInput, computerInput) {
+        let playerLowerCase = playerInput.toLowerCase();
+        let playerValue = playerLowerCase.replace(playerLowerCase[0], playerLowerCase[0].toUpperCase());
+
+        if (playerValue == 'Rock') {
+          if (computerInput == 'Rock') {
+            return 0;
+          } else if (computerInput == 'Scissors') {
+            return 1;
+          } else if (computerInput == 'Paper') {
+            return 2;
+          }
+        } else if (playerValue == 'Scissors') {
+          if (computerInput == 'Rock') {
+            return  2;
+          } else if (computerInput == 'Scissors') {
+            return 0;
+          } else if (computerInput == 'Paper') {
+            return 1;
+          }
+        } else if (playerValue == 'Paper') {
+          if (computerInput == 'Rock') {
+            return  1;
+          } else if (computerInput == 'Scissors') {
+            return 2;
+          } else if (computerInput == 'Paper') {
+            return 0;
+          }
+        }
+      }
+
+      const game = function() {
+        let playerScore = 0;
+        let computerScore = 0;
+
+        for (let i = 0; i < 5; i ++) {
+          let playerPick = prompt('choose your weapon');
+        let caseNum = playRound(playerPick, computerPlay());
+          if (caseNum == 0) {
+            console.log(`It's a tie! player score: ${playerScore} computer score: ${computerScore}`);
+          } else if (caseNum ==1 ) {
+            playerScore += 1;
+            console.log(`You won! player score: ${playerScore} computer score: ${computerScore}`);
+          } else if (caseNum ==2) {
+            computerScore += 1;
+            console.log(`You lost! player score: ${playerScore} computer score: ${computerScore}`);
+          } else {
+            i -= 1;
+            console.log('learn how to spell ya dumb dumb');
+          }
+        }
+
+        if (playerScore > computerScore) {
+          console.log(`You win! congrats you don't suck`);
+        } else if (computerScore > playerScore) {
+          console.log(`You lose.... time to get better`);
+        } else {
+          console.log(`A tie.... Play again?`);
+        }
+      }
+
+
+    </script>
+  </head>
+  <body>
+    <button onclick="game()" type="button" name="button">this is button</button>
+
+  </body>
+</html>
